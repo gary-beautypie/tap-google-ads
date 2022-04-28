@@ -67,7 +67,7 @@ def create_nested_resource_schema(resource_schema, fields):
 def get_selected_fields(stream_mdata):
     selected_fields = set()
     for mdata in stream_mdata:
-        if mdata["breadcrumb"]:
+        if mdata["breadcrumb"] and len(mdata["breadcrumb"]) > 0:
             inclusion = mdata["metadata"].get("inclusion")
             selected = mdata["metadata"].get("selected")
             if utils.should_sync_field(inclusion, selected) and mdata["breadcrumb"][1] != "_sdc_record_hash":
