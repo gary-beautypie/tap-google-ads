@@ -71,6 +71,7 @@ def get_selected_fields(stream_mdata):
             inclusion = mdata["metadata"].get("inclusion")
             selected = mdata["metadata"].get("selected")
             if utils.should_sync_field(inclusion, selected) and mdata["breadcrumb"][1] != "_sdc_record_hash":
+                print(mdata["metadata"])
                 selected_fields.update(mdata["metadata"]["tap-google-ads.api-field-names"])
 
     return selected_fields
