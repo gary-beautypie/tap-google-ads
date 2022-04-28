@@ -67,12 +67,12 @@ def create_nested_resource_schema(resource_schema, fields):
 def get_selected_fields(stream_mdata):
     selected_fields = set()
     for mdata in stream_mdata:
-        if mdata["breadcrumb"] and len(mdata["breadcrumb"]) > 0:
+        if mdata["breadcrumb"]:
             inclusion = mdata["metadata"].get("inclusion")
             selected = mdata["metadata"].get("selected")
             if utils.should_sync_field(inclusion, selected) and mdata["breadcrumb"][1] != "_sdc_record_hash":
-                print(mdata["metadata"])
-                selected_fields.update(mdata["metadata"]["tap-google-ads.api-field-names"])
+                if 'tap-google-ads.api-field-names' in mdata["metadata"]:
+                    selected_fields.update(mdata["metadata"]["tap-google-ads.api-field-names"])
 
     return selected_fields
 
